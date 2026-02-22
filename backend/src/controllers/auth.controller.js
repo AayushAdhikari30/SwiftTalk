@@ -4,10 +4,13 @@ import bcrypt from "bcryptjs"
 export const signup = async (req,res)=>{
     const {fullName,email,password} = req.body
     try {
-        if(password.length<6){
-            return res.status(400),json({message: "Password must be at least 6 Characters"})
+        if(!fullName || !email || !password){
+            return res.status(400).json({message: "All filed are required"})
         }
-        const user =  await User.findone({email})
+        if(password.length<6){
+            return res.status(400).json({message: "Password must be at least 6 Characters"})
+        }
+        const user =  await User.findOne({email})
 
         if (user) return res.status(400).json({message: "Email already Exists"});
         
@@ -22,7 +25,7 @@ export const signup = async (req,res)=>{
 
         if(newUser)
         {
-            generateToken(newUser._id),res;
+            generateToken(newUser._id,res);
             await newUser.save();
             
             res.status(201).json({
@@ -40,8 +43,20 @@ export const signup = async (req,res)=>{
         res.status(500).json({message: "Internal server error"});
     } 
 };
-export const login =(req,res)=>{
-    res.send("login route")
+export const login = async (req,res)=>{
+    const {email,password} = req.body;
+    try {
+    const user = await User.findOne({email});
+
+    if(!user)
+    {
+        return res.status(400)({message:"Invalid Credentials"})
+    }
+
+    const isPasswordCorrect= await bcrypt.compare(password,user.password);
+} catch (error) {
+    
+}
 };
 export const logout =(req,res)=>{
     res.send("logout route")
