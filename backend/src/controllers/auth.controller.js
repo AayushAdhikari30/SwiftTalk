@@ -1,6 +1,8 @@
 import { generateToken } from "../lib/utils.js";
 import User from "../models/user.model.js"
 import bcrypt from "bcryptjs"
+import cloudinary from "../lib/cloudinary.js"
+
 export const signup = async (req,res)=>{
     const {fullName,email,password} = req.body
     try {
@@ -54,10 +56,61 @@ export const login = async (req,res)=>{
     }
 
     const isPasswordCorrect= await bcrypt.compare(password,user.password);
+
+    if(!isPasswordCorrect)
+    {
+        return res.status(400).json({message: "Invalid Credentials"});
+    }
+
+    generateToken(user._id,res);
+
+    res.status(200).json({
+        _id: user._id,
+        email: user.email,
+        fullName: user.fullName,
+        profilePic: user.profilePic
+    })
+
 } catch (error) {
-    
+    console.log("Error in login controller ",error.message);
+    res.status(500).json({message: "Internal Server Error"});
 }
 };
 export const logout =(req,res)=>{
-    res.send("logout route")
+    try {
+        res.cookie("jwt","",{maxAge:0});
+        res.status(200).json({message: "Logged out successfully"});
+    } catch (error) {
+        console.log("Error in logout Controller ",error.message)
+        res.status(500).json({message: "Internal Server Error"});
+    }
 };
+
+export const updateProfile = async (req,res)=>{
+    try {
+        const {profilePic}= req.body;
+        const UserId = req.user._id;
+
+        if(!profilePic)
+        {
+            res.status(400).json({message:"ProfilePic Required"});
+        }
+
+        const uploadResponse = await cloudinary.uploader.upload(profilePic);
+        const updateUser = await User.findByIdAndUpdate(userId,  {profilePic:uploadResponse.secure_url},{new:true});
+
+        res.status(200).json(updateUser);   
+    } catch (error) {
+        console.log("Error in update profile");
+        res.state(500).json({messgae:" Internal Server error"});
+    }
+}
+
+export const checkAuth = async (req,res) => {
+    try {
+        res.status(200).json(req.user);
+    } catch (error) {
+        console.log("Error in checkAuth Controller");
+        res.status(500).json({message: "Internal Server Error"});
+    }
+}
