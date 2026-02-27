@@ -6,7 +6,7 @@ import toast from "react-hot-toast"
 
 const SignupPage = () => {
 
-  const [isShowPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -15,9 +15,29 @@ const SignupPage = () => {
 
   const [signup, isSigningUp] = useAuthStore();
 
-  const validateForm = () => { };
-  const handleSubmmit = async (e) => {
+  const validateForm = () => {
+    //fullname check
+    if (!formData.fullName.trim()) return toast.error("Full name is required");
+    //email check
+    if (!formData.email.trim()) {
+      return toast.email = 'Email is required'
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      return toast.email = 'Please enter a valid email'
+    }
+    //validate password
+    if (!formData.password) {
+      return toast.password = 'Password is required'
+    } else if (formData.password.length < 8) {
+      return toast.password = 'Password must be at least 8 characters'
+    }
+    return true;
+  };
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const success = validateForm();
+
+    if (success === true) signup(formData);
   };
 
   return (
@@ -127,13 +147,6 @@ const SignupPage = () => {
           </div>
         </div>
       </div>
-
-      {/* right side */}
-
-      <AuthImagePattern
-        title="Join our community"
-        subtitle="Connect with friends, share moments, and stay in touch with your loved ones."
-      />
     </div>
   );
 }
