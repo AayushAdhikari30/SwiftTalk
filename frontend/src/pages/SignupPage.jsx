@@ -40,7 +40,7 @@ const SignupPage = () => {
   };
 
   return (
-    <div className='min-h-screen relative flex items-center justify-center p-4 overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900'>
+    <div className='min-h-screen relative flex items-center justify-center p-4 overflow-hidden bg-gradient-to-br from-slate-950 via-blue-900 to-slate-950'>
       
       {/* ===== ANIMATED BACKGROUND ===== */}
       <div className='absolute inset-0 -z-10'>
@@ -57,10 +57,10 @@ const SignupPage = () => {
           {/* Logo */}
           <div className='group cursor-pointer'>
             <div className='flex items-center gap-3 mb-8'>
-              <div className='p-3 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-500 transform group-hover:scale-110 transition-transform duration-300'>
+              <div className='p-3 rounded-2xl bg-gradient-to-br from-blue-500 to-purple-500 transform group-hover:scale-110 transition-transform duration-300'>
                 <MessageSquare className='text-white size-8' />
               </div>
-              <h1 className='text-4xl font-bold'>ChatVerse</h1>
+              <h1 className='text-4xl font-bold'>Swift Talk</h1>
             </div>
           </div>
 
@@ -68,7 +68,7 @@ const SignupPage = () => {
           <div>
             <h2 className='text-5xl font-bold mb-4'>
               Join Our<br />
-              <span className='bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent'>
+              <span className='bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent'>
                 Community
               </span>
             </h2>
@@ -99,13 +99,13 @@ const SignupPage = () => {
 
           {/* Stats */}
           <div className='grid grid-cols-2 gap-4 pt-8'>
-            <div className='bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl p-4'>
+            <div className='bg-gradient-to-br from-blue-500/20 to-purple-500/20 backdrop-blur-lg border border-blue-500/40 rounded-xl p-4 hover:border-blue-500/60 transition-all'>
               <p className='text-2xl font-bold text-white'>10K+</p>
-              <p className='text-slate-400 text-sm'>Active Users</p>
+              <p className='text-slate-300 text-sm'>Active Users</p>
             </div>
-            <div className='bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl p-4'>
+            <div className='bg-gradient-to-br from-blue-500/20 to-purple-500/20 backdrop-blur-lg border border-blue-500/40 rounded-xl p-4 hover:border-blue-500/60 transition-all'>
               <p className='text-2xl font-bold text-white'>24/7</p>
-              <p className='text-slate-400 text-sm'>Support</p>
+              <p className='text-slate-300 text-sm'>Support</p>
             </div>
           </div>
         </div>
@@ -121,7 +121,7 @@ const SignupPage = () => {
             </div>
 
             {/* Form Card */}
-            <div className='bg-white/10 backdrop-blur-2xl border border-white/20 rounded-3xl p-8 shadow-2xl'>
+            <div className='bg-slate-900/80 backdrop-blur-2xl border border-blue-500/30 rounded-3xl p-8 shadow-2xl hover:border-blue-500/50 transition-all'>
               
               <form onSubmit={handleSubmit} className='space-y-6'>
                 
@@ -199,9 +199,9 @@ const SignupPage = () => {
                 </div>
 
                 {/* Password Requirements */}
-                <div className='bg-white/5 border border-white/10 rounded-xl p-4'>
-                  <p className='text-xs text-slate-300 font-semibold mb-3 flex items-center gap-2'>
-                    <CheckCircle className='size-4 text-green-400' />
+                <div className='bg-blue-500/10 border border-blue-500/30 rounded-xl p-4'>
+                  <p className='text-xs text-slate-200 font-semibold mb-3 flex items-center gap-2'>
+                    <CheckCircle className='size-4 text-blue-400' />
                     Password Requirements
                   </p>
                   <ul className='space-y-2 text-xs text-slate-400'>
@@ -221,7 +221,7 @@ const SignupPage = () => {
                 <button
                   type="submit"
                   disabled={isSigningUp}
-                  className='btn btn-lg w-full relative bg-gradient-to-r from-blue-500 to-cyan-500 text-white border-0 font-bold hover:shadow-2xl hover:shadow-blue-500/50 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed group'
+                  className='btn btn-lg w-full relative bg-gradient-to-r from-blue-600 to-purple-600 text-white border-0 font-bold hover:from-blue-700 hover:to-purple-700 hover:shadow-2xl hover:shadow-blue-500/50 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed group'
                 >
                   {isSigningUp ? (
                     <>
@@ -247,10 +247,10 @@ const SignupPage = () => {
 
               {/* Social Signup */}
               <div className='grid grid-cols-2 gap-3'>
-                <button className='btn btn-outline btn-sm border-white/20 text-white hover:bg-white/10 rounded-lg'>
+                <button className='btn btn-outline btn-sm border-blue-500/40 text-blue-400 hover:bg-blue-500/20 hover:border-blue-500/60 rounded-lg'>
                   Google
                 </button>
-                <button className='btn btn-outline btn-sm border-white/20 text-white hover:bg-white/10 rounded-lg'>
+                <button className='btn btn-outline btn-sm border-blue-500/40 text-blue-400 hover:bg-blue-500/20 hover:border-blue-500/60 rounded-lg'>
                   GitHub
                 </button>
               </div>

@@ -9,10 +9,10 @@ const Homepage = () => {
 
     return (
 
-        <div className='h-screen bg-base-200'>
+        <div className='min-h-screen bg-gradient-to-br from-slate-900 via-blue-900/30 to-slate-900'>
             <div className='flex items-center justify-center pt-20 px-4'>
-                <div className='bg-base-100 rounded-lg shadow-cl w-full max-w-6xl h-[calc(100vh-8rem)]'>
-                    <div className='flex h-full rounded-lg overflow-hidden'>
+                <div className='bg-slate-900/80 backdrop-blur-sm rounded-2xl shadow-2xl w-full max-w-6xl h-[calc(100vh-8rem)] border border-blue-500/20'>
+                    <div className='flex h-full rounded-2xl overflow-hidden'>
                         <Sidebar/>
                         {!selectedUser ? <NoChatSelected/> : <ChatContainer />}
                     </div>

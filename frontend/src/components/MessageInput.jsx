@@ -50,22 +50,22 @@ const MessageInput = () => {
     }
   };
   return (
-    <div className='p-4 w-full'>
+    <div className='p-4 w-full border-t border-blue-500/20 bg-slate-900/50'>
       {imagePreview && (
         <div className="mb-3 flex items-center gap-2">
           <div className="relative">
             <img
               src={imagePreview}
               alt="Preview"
-              className="w-20 h-20 object-cover rounded-lg border border-zinc-700"
+              className="w-20 h-20 object-cover rounded-lg border-2 border-blue-500/40"
             />
             <button
               onClick={removeImage}
-              className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-base-300
-              flex items-center justify-center"
+              className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-red-500/80 hover:bg-red-600
+              flex items-center justify-center transition-colors"
               type="button"
             >
-              <X className="size-3" />
+              <X className="size-4 text-white" />
             </button>
           </div>
         </div>
@@ -75,7 +75,7 @@ const MessageInput = () => {
         <div className='flex-1 flex gap-2'>
           <input
             type='text'
-            className='w-full input input-bordered rounded-lg input-sm sm:input-md'
+            className='w-full input input-bordered rounded-xl input-sm sm:input-md bg-slate-800 border-blue-500/30 text-white placeholder-slate-400 focus:border-blue-500 focus:ring-blue-500'
             placeholder='Type a message...'
             value={text}
             onChange={(e) => setText(e.target.value)}
@@ -90,8 +90,7 @@ const MessageInput = () => {
 
           <button
             type="button"
-            className={`hidden sm:flex btn btn-circle
-                     ${imagePreview ? "text-emerald-500" : "text-zinc-400"}`}
+            className={`hidden sm:flex btn btn-circle btn-sm transition-colors ${imagePreview ? "text-emerald-500 hover:bg-emerald-500/20" : "text-slate-400 hover:bg-blue-500/20 hover:text-blue-400"}`}
             onClick={() => fileInputRef.current?.click()}
           >
             <Image size={20} />
@@ -101,9 +100,9 @@ const MessageInput = () => {
 
         <button
           type="submit"
-          className='btn btn-sm btn-circle'
+          className='btn btn-sm btn-circle bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 border-0 text-white'
           disabled={!text.trim() && !imagePreview}>
-          <Send size={22} />
+          <Send size={20} />
 
         </button>
       </form>

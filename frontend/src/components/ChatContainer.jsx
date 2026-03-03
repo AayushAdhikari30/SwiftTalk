@@ -41,16 +41,16 @@ const ChatContainer = () => {
   );
 
   return (
-    <div className='flex-1 flex flex-col overflow-auto'>
+    <div className='flex-1 flex flex-col overflow-auto bg-gradient-to-b from-slate-900 to-slate-900/80'>
       <ChatHeader />
 
       <div className='flex-1 overflow-y-auto p-4 space-y-4'>
 
         {/* ── Empty state ── */}
         {(!messages || messages.length === 0) && (
-          <div className="flex flex-col items-center justify-center h-full gap-3 text-base-content/40 select-none">
-            <div className="w-14 h-14 rounded-2xl bg-base-300/60 flex items-center justify-center">
-              <MessageSquare className="w-7 h-7" />
+          <div className="flex flex-col items-center justify-center h-full gap-3 text-slate-400 select-none">
+            <div className="w-16 h-16 rounded-2xl bg-blue-500/20 flex items-center justify-center">
+              <MessageSquare className="w-8 h-8 text-blue-400" />
             </div>
             <p className="text-sm font-medium">No messages yet</p>
             <p className="text-xs">Say hi to {selectedUser?.fullName}!</p>
@@ -68,7 +68,7 @@ const ChatContainer = () => {
             >
               {/* Avatar */}
               <div className='chat-image avatar'>
-                <div className='size-10 rounded-full border border-base-300 overflow-hidden'>
+                <div className='size-10 rounded-full border-2 border-blue-500/40 overflow-hidden'>
                   <img
                     src={
                       isMine
@@ -83,18 +83,17 @@ const ChatContainer = () => {
 
               {/* Timestamp */}
               <div className='chat-header mb-1'>
-                <time className='text-xs opacity-50 ml-1'>
-                  {/* BUG FIX: removed stray semicolon that was rendering as text */}
+                <time className='text-xs text-slate-400 ml-1'>
                   {formatMessageTime(message.createdAt)}
                 </time>
               </div>
 
               {/* Bubble */}
               <div
-                className={`chat-bubble flex flex-col max-w-xs lg:max-w-md break-words shadow-sm ${
+                className={`chat-bubble flex flex-col max-w-xs lg:max-w-md break-words shadow-md transition-all ${
                   isMine
-                    ? "bg-primary text-primary-content"
-                    : "bg-base-300 text-base-content"
+                    ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white"
+                    : "bg-slate-800 text-slate-100 border border-blue-500/20"
                 }`}
               >
                 {message.image && (
