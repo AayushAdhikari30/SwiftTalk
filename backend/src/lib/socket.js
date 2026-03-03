@@ -8,7 +8,7 @@ const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
     origin: process.env.NODE_ENV === "production"
-      ? ["https://swifttalk-6f7h.onrender.com"]
+      ? process.env.CLIENT_URL || true
       : ["http://localhost:5173"],
     credentials: true,
   },
